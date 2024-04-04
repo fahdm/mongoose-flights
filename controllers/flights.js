@@ -5,7 +5,8 @@ const Flight = require('../models/flight');
 module.exports = {
     new: newFlight,
     create,
-    index
+    index,
+    show
 };
 
 
@@ -20,18 +21,12 @@ function newFlight (req,res) {
 
 }
 
-function create(req,res) {
-
-Flight.create(req.body)
-.then(function(newFlight){
-    console.log('newFlight:', newFlight);
-    res.redirect('/flights'); // revisit this url path
-}).catch(function(error){
-    console.log('error', error);
-    res.render('flights/new', {errorMsg: 'invalid data'}); // needs file path
-})
-
-    
+async function create(req,res){
+    try { await Flight.create(req.body)
+        res.redirect('/flights')
+    } catch (error){
+        res.render('error', {message:'error', error});
+    }
 }
 
 function index(req,res) {
@@ -46,3 +41,19 @@ function index(req,res) {
         //remove for production
     })
 }
+
+async function show(req, res) {
+    try {
+        const flight = await Flight.findById(req.params.id).populate('destinations'); 
+        
+        res.render('flights/show',{title:'Flight Details',flight})
+    } catch (error) {
+        
+     console.error(error);
+     res.status(500).send('Internal Server Error');
+      }
+ }
+
+
+
+        
