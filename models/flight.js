@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 
+
+
 const Schema = mongoose.Schema;
+
+const ticketSchema = require('./ticket')
+
+
 
 const destinationSchema = new Schema({
 
@@ -17,6 +23,7 @@ const destinationSchema = new Schema({
 
 
 
+
 const flightSchema = new Schema({
 
 
@@ -24,6 +31,14 @@ const flightSchema = new Schema({
         type: [destinationSchema]
 
     },
+
+    tickets: [{
+
+        type: Schema.Types.ObjectId,
+        ref: 'Ticket'
+
+    }],
+
 
 
     airline: {

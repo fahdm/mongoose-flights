@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const destinationCtrl = require('../controllers/destinations');
 
-// POST /movies/:id/reviews (create review for a movie)
+// POST /flights/:id/reviews 
 router.post('/flights/:id/destinations', destinationCtrl.create);
 
 module.exports = router;

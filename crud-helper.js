@@ -24,15 +24,12 @@ require('./config/database');
 
 // Require the app's Mongoose models
 const Flight = require('./models/flight');
-const destination = require('./models/destination');
+//const destination = require('./models/destination');
+const Ticket = require('./models/ticket');
 
-Flight.updateMany({}, {destination: []})
-.then(updateStatus => console.log(updateStatus));
+Flight.updateMany({}, { destination: [] })
+    .then(updateStatus => console.log(updateStatus));
 
-// Check all movie documents
+Flight.updateMany({}, { ticket: [] })
+    .then(updateStatus => console.log(updateStatus));
 
-// Movie.find({}).then(movies => console.log(movies));
-
-// Check all performer documents
-
-// Performer.find({}).then(performers => console.log(performers))
