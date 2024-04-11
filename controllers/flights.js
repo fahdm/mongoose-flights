@@ -20,6 +20,9 @@ module.exports = {
 
 function newFlight(req, res) {
 
+
+    
+
     res.render('flights/new', { errorMsg: '' });
 
 }
